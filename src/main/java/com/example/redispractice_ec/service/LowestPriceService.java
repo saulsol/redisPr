@@ -1,5 +1,6 @@
 package com.example.redispractice_ec.service;
 
+import com.example.redispractice_ec.dto.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,4 +21,19 @@ public class LowestPriceService {
         myTempSet = redisTemplate.opsForZSet().rangeWithScores(key, 0, 9);
         return myTempSet;
     }
+
+    public int setNewProduct(Product newProduct){
+        int rank = 0;
+        redisTemplate.opsForZSet().add(
+                newProduct.getProductGroupId(),
+                newProduct.getProductId(),
+                newProduct.getPrice()
+                );
+        return rank = redisTemplate
+                .opsForZSet()
+                .rank(newProduct.getProductGroupId(), newProduct.getProductId())
+                .intValue();
+
+    }
+
 }
