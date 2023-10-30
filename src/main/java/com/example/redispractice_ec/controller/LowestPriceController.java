@@ -1,5 +1,6 @@
 package com.example.redispractice_ec.controller;
 
+import com.example.redispractice_ec.dto.Keyword;
 import com.example.redispractice_ec.dto.Product;
 import com.example.redispractice_ec.dto.ProductGroup;
 import com.example.redispractice_ec.service.LowestPriceService;
@@ -31,10 +32,14 @@ public class LowestPriceController {
         return lowestPriceService.setNewProductGroup(productGroup);
     }
 
-    @PutMapping("/productGroup")
+    @PutMapping("/productGroupToKeyword")
     public int setNewProduct(String keyword, String prdId, double score){
         return lowestPriceService.setNewProductGroupKeyword(keyword, prdId, score);
     }
 
+//    @GetMapping("/productPrice/lowest")
+//    public Keyword getLowestPriceProductByKeyword(String keyword){
+//
+//    }
 
 }
