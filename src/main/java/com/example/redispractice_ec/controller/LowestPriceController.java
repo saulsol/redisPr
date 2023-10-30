@@ -1,6 +1,7 @@
 package com.example.redispractice_ec.controller;
 
 import com.example.redispractice_ec.dto.Product;
+import com.example.redispractice_ec.dto.ProductGroup;
 import com.example.redispractice_ec.service.LowestPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,5 +25,16 @@ public class LowestPriceController {
     public int setNewProduct(@RequestBody Product newProduct){
         return lowestPriceService.setNewProduct(newProduct);
     }
+
+    @PutMapping("/productGroup")
+    public int setNewProduct(@RequestBody ProductGroup productGroup){
+        return lowestPriceService.setNewProductGroup(productGroup);
+    }
+
+    @PutMapping("/productGroup")
+    public int setNewProduct(String keyword, String prdId, double score){
+        return lowestPriceService.setNewProductGroupKeyword(keyword, prdId, score);
+    }
+
 
 }
