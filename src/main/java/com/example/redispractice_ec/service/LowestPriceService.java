@@ -25,6 +25,15 @@ public class LowestPriceService {
     }
 
     public int setNewProduct(Product newProduct){
+        
+        //연습
+        redisTemplate.opsForValue().set("product", newProduct);
+        redisTemplate.opsForList().leftPush("productList", newProduct);
+        
+        //연습
+        
+        
+        
         int rank = 0;
         redisTemplate.opsForZSet().add(
                 newProduct.getProductGroupId(),
