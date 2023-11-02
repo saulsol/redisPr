@@ -2,8 +2,10 @@ package com.example.redispractice_ec.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Product {
+public class Product implements Serializable {
 
     private String productGroupId; // PG0001
 

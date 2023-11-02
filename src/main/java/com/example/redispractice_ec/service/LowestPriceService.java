@@ -2,6 +2,7 @@ package com.example.redispractice_ec.service;
 
 import com.example.redispractice_ec.dto.Product;
 import com.example.redispractice_ec.dto.ProductGroup;
+import io.lettuce.core.dynamic.domain.Timeout;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +28,20 @@ public class LowestPriceService {
 
     public int setNewProduct(Product newProduct){
         
-        //연습
-        redisTemplate.opsForValue().set("product", newProduct);
-        redisTemplate.opsForList().leftPush("productList", newProduct);
+        //-----------------연습
+
+        // 집합에 멤버 추가
+        redisTemplate.opsForSet().add("mySet", "member1");
+        redisTemplate.opsForSet().add("mySet", "member2");
+        redisTemplate.opsForHash().put("productHash", "field", "value");
+
+        long timeOut = 1;
+
+        // 키 삭제 시간 설정
+        redisTemplate.expire("mySet", timeOut, TimeUnit.MINUTES);
+
         
-        //연습
+        //----------------연습
         
         
         
